@@ -42,6 +42,6 @@
         <a (click)="addSession()">Add Session</a>
       </div>
     </div>
-    <session-list [sortBy]="sortBy" [filterBy]="filterBy" *ngIf="!addMode" [sessions]="event?.sessions"></session-list> //input parent to child
+    <session-list [eventId]="event?.id" [sortBy]="sortBy" [filterBy]="filterBy" *ngIf="!addMode" [sessions]="event?.sessions"></session-list> //input parent to child
     <create-session *ngIf="addMode" (saveNewSession)="saveNewSession($event)" (cancelAddSession)="cancelAddSession()"></create-session> //output child to parent
   </div>

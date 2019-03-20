@@ -22,9 +22,9 @@ export class EventDetailsComponent implements OnInit {
     }
 
     ngOnInit() {
-      this.route.params.forEach((params:Params)=>{
-        this.event = this.eventService.getEvent(+params['id']);
-        this.addMode = false;
+      this.route.data.forEach((data)=>{        
+          this.event=data['event'];
+          this.addMode = false;               
         //just to set the add mode back to normal otherwise add mode will be displayed along with other
       })
       //just to route for different events
@@ -40,7 +40,7 @@ export class EventDetailsComponent implements OnInit {
       const nextId = Math.max.apply(null,this.event.sessions.map(s=>s.id));
       session.id = nextId +1
       this.event.sessions.push(session)
-      this.eventService.updateEvent(this.event)
+      this.eventService.saveEvent(this.event).subscribe();
       this.addMode= false
     }
 
